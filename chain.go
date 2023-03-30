@@ -47,7 +47,7 @@ func Chain() {
 	}
 
 	fmt.Println("new blocknumber:")
-	fmt.Println(header.Number.String()) // 5671744*/
+	fmt.Println(header.Number.String())*/
 
 	for {
 		block, err := client.BlockByNumber(context.Background(), big.NewInt(int64(NowNumber)))

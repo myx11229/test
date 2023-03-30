@@ -125,10 +125,10 @@ func (window *Window) Build(diff int, NowNumber int) {
 		window.Tail = NowNumber - 1
 		if window.Diff == 30 {
 			_, err = db.SqlDB.Exec("drop table mp30")
-			_, err = db.SqlDB.Exec("CREATE TABLE map30(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
+			_, err = db.SqlDB.Exec("CREATE TABLE IF NOT EXISTS map30(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
 		} else {
 			_, err = db.SqlDB.Exec("drop table mp60")
-			_, err = db.SqlDB.Exec("CREATE TABLE map60(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
+			_, err = db.SqlDB.Exec("CREATE TABLE IF NOT EXISTS map60(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
 		}
 		if err != nil {
 			log.Fatalln(err)
