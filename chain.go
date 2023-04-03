@@ -75,12 +75,16 @@ func Chain() {
 			from, err := types.Sender(types.LatestSignerForChainID(tx.ChainId()), tx)
 			if err == nil {
 				Sender := from.Hex() //发送者地址 0x……
-				Sender = Sender[:3]
 				//Timestamp同区块
 				trans := Trans{
-					Sender:    Sender,
-					Timestamp: Timestamp_Readable_String,
+					Nonce:    tx.Nonce(),
+					Gasprice: tx.GasPrice().String(),
+					Gas:      tx.Gas(),
+					From:     Sender,
+					To:       tx.To().Hex(),
+					Value:    tx.Value().String(),
 				}
+				//Sender = Sender[:3]
 				trans.InsertTrans() //将交易信息插入到表trans中
 			}
 		}

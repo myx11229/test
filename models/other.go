@@ -36,14 +36,17 @@ func Query60m() (_ string, err error) { //4. 返回当前时刻起，一小时�
 func QueryAll() (res string, err error) {
 	//5. 输出自系统运行以来，以首字母作为区分的各类地址的总的交易发送量
 	mp := make(map[string]int)
-	rows, _ := db.SqlDB.Query("select id,sender,timestamp from trans")
+	rows, _ := db.SqlDB.Query("select * from trans")
 	defer rows.Close()
 	for rows.Next() {
-		var Id int
-		var Sender string
-		var Timestamp string
-		err = rows.Scan(&Id, &Sender, &Timestamp)
-		mp[Sender]++
+		var Nonce uint64
+		var Gasprice string
+		var Gas uint64
+		var From string
+		var To string
+		var Value string
+		err = rows.Scan(&Nonce, &Gasprice, &Gas, &From, &To, &Value)
+		mp[From[:3]]++
 	}
 	resjson, _ := json.MarshalIndent(mp, "", "")
 	res = string(resjson)

@@ -78,10 +78,9 @@ func (window *Window) Build(diff int, NowNumber int) {
 		log.Fatalln(err)
 	}
 	for rows.Next() {
-		var Id int
 		var Sender string
 		var Value int
-		err := rows.Scan(&Id, &Sender, &Value)
+		err := rows.Scan(&Sender, &Value)
 		if err != nil {
 			log.Fatalln(err)
 		}

@@ -19,30 +19,30 @@ func init() {
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS block(Number BIGINT NOT NULL,gasLimit BIGINT,timestamp BIGINT,timestamp_readable VARCHAR(20),PRIMARY KEY(Number));")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS block(Number BIGINT NOT NULL,gasLimit BIGINT,timestamp BIGINT,timestamp_readable VARCHAR(20),PRIMARY KEY(Number))")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS trans(Id int auto_increment,Sender VARCHAR(20),timestamp TIMESTAMP,PRIMARY KEY(Id));")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS trans(nonce BIGINT,gasprice VARCHAR(50),gas BIGINT,from1 VARCHAR(50),to1 VARCHAR(50),value1 VARCHAR(50),PRIMARY KEY(nonce, from1))")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map30(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map30(Sender VARCHAR(20),Value INT,PRIMARY KEY(Sender))")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map30ht(Id int auto_increment,head int,tail int,PRIMARY KEY(Id))")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map30ht(Id INT auto_increment,head INT,tail INT,PRIMARY KEY(Id))")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map60(Id int auto_increment,Sender VARCHAR(20),number int,PRIMARY KEY(Id))")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map60(Sender VARCHAR(20),Value INT,PRIMARY KEY(Sender))")
 	if err != nil {
 		log.Fatalln(err)
 	}
-	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map60ht(Id int auto_increment,head int,tail int,PRIMARY KEY(Id))")
+	_, err = SqlDB.Exec("CREATE TABLE IF NOT EXISTS map60ht(Id INT auto_increment,head INT,tail INT,PRIMARY KEY(Id))")
 	if err != nil {
 		log.Fatalln(err)
 	}
